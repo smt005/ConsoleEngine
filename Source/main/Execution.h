@@ -4,5 +4,5 @@
 
 class Execution {
 public:
-	static void run();
+	static int run();
 };
