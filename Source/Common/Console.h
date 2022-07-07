@@ -22,5 +22,5 @@ namespace engine {
 	std::string enterText(const std::string& textInfo = std::string());
 
 	typedef std::function<void(const std::vector<std::string>& words)> CommanFunction;
-	void runCommand(std::map<std::string, CommanFunction> mapFunction);
+	bool runCommand(std::map<std::string, CommanFunction> mapFunction);
 }

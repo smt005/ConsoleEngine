@@ -18,9 +18,9 @@ std::string engine::enterText(const std::string& textInfo) {
 	return enteredText;
 }
 
-void engine::runCommand(std::map<std::string, CommanFunction> mapFunction) {
+bool engine::runCommand(std::map<std::string, CommanFunction> mapFunction) {
 	if (mapFunction.size() == 0) {
-		return;
+		return false;
 	}
 
 	std::string command;
@@ -34,10 +34,14 @@ void engine::runCommand(std::map<std::string, CommanFunction> mapFunction) {
 			separateText(command, words, " ");
 		}
 
-		if (words.empty()) return;
+		if (words.empty()) return true;
 
 		if (words[0] == "exit") {
-			return;
+			return false;
+		}
+
+		if (words[0] == "close") {
+			return false;
 		}
 
 		auto it = mapFunction.find(words[0]);
@@ -49,4 +53,6 @@ void engine::runCommand(std::map<std::string, CommanFunction> mapFunction) {
 		CommanFunction function = it->second;
 		function(words);
 	}
+
+	return false;
 }
